@@ -322,8 +322,10 @@ This project is developed for educational and portfolio purposes.
 
 
 ##screenshort
+
 1. 
-<img width="1883" height="813" alt="code_output" src="https://github.com/user-attachments/assets/5636689f-420f-4f78-abc0-7470caac66de" />
+<img width="1865" height="822" alt="code_output" src="https://github.com/user-attachments/assets/1f2befb2-c130-48c2-ade6-f5d364c564f3" />
+
 
 2.
 <img width="1917" height="892" alt="run_code" src="https://github.com/user-attachments/assets/58d5b15e-2227-4605-ae59-9b73291932dd" />
