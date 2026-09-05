@@ -319,3 +319,21 @@ https://github.com/saniyakhadapkar-2005
 ## License
 
 This project is developed for educational and portfolio purposes.
+
+
+##screenshort
+1. 
+<img width="1883" height="813" alt="code_output" src="https://github.com/user-attachments/assets/5636689f-420f-4f78-abc0-7470caac66de" />
+
+2.
+<img width="1917" height="892" alt="run_code" src="https://github.com/user-attachments/assets/58d5b15e-2227-4605-ae59-9b73291932dd" />
+
+3.
+<img width="1915" height="916" alt="analyze_code" src="https://github.com/user-attachments/assets/e36130b5-e40c-4ad1-97d5-c65d524fc32e" />
+
+4.
+<img width="1900" height="817" alt="refactor_code" src="https://github.com/user-attachments/assets/eb445931-d19a-4278-ab45-64bfe3fc9a2c" />
+
+
+
+
