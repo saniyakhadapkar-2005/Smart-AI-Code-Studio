@@ -1,6 +1,6 @@
 # Smart AI Code Studio
 
-## AI-Powered Automated Code Refactoring & Self-Correction
+## AI-Powered Automated Code Refactoring 
 
 Smart AI Code Studio is an AI-powered code refactoring application built with **Python, Streamlit, Ollama, and Llama 3**.
 
@@ -309,7 +309,7 @@ Possible future improvements include:
 
 **Saniya Khadapkar**
 
-MSc Artificial Intelligence Student
+MSc Artificial Intelligence 
 
 GitHub:
 https://github.com/saniyakhadapkar-2005
