@@ -3,7 +3,7 @@ import streamlit as st
 
 from code_engine import LANG_EXTENSIONS
 
-API_BASE = "http://127.0.0.1:8001"
+API_BASE = "https://smart-ai-code-studio.onrender.com"
 DEFAULT_MODEL = "qwen2.5-coder:7b"
 DEFAULT_GOAL = "Improve readability, maintainability, efficiency and error handling while preserving intended behavior."
 
