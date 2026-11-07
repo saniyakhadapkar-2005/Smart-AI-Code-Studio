@@ -1,0 +1,7 @@
+streamlit==1.63.0
+requests==2.34.2
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+pydantic>=2,<3
+pytest>=8,<9
+pyflakes>=3.2,<4
