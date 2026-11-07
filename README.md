@@ -1,204 +1,190 @@
-# Smart AI Code Studio
+# Smart AI Code Studio 🚀
 
-A local-first Generative AI application for automated source-code refactoring, validation and iterative error correction.
+### AI-Powered Code Analysis, Validation & Refactoring Platform
 
-## Architecture
+Smart AI Code Studio is an AI-powered coding assistant designed to help developers write, validate, analyze, and improve their code using Large Language Models (LLMs).
+
+The application combines a Streamlit frontend with a FastAPI backend and locally hosted AI models through Ollama, providing an AI-assisted coding environment.
+
+## 🌟 Key Features
+
+- **Code Execution:** Run code and view execution results.
+- **Code Validation:** Identify syntax errors and coding issues.
+- **AI Code Analysis:** Analyze code and understand potential problems.
+- **AI Code Refactoring:** Improve code readability, structure, and maintainability.
+- **Multi-Language Support:** Work with supported programming languages.
+- **Local LLM Integration:** Use Ollama to run AI models locally.
+- **FastAPI Backend:** Handle backend processing and API communication.
+- **Interactive UI:** Simple and user-friendly Streamlit interface.
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Python | Core programming language |
+| Streamlit | Frontend user interface |
+| FastAPI | Backend API development |
+| Ollama | Local LLM integration |
+| Llama 3 | AI-powered code assistance |
+| Qwen 2.5 Coder | Code-focused AI model |
+| REST API | Frontend-backend communication |
+| Git & GitHub | Version control |
+
+## 🏗️ System Architecture
 
 ```text
-User
-  ↓
-Streamlit Frontend
-  ↓ HTTP/REST
-FastAPI Backend
-  ↓
-Refactoring / Analysis / Validation Engines
-  ↓
-Ollama → Llama 3
-  ↓
-Generated Code
-  ↓
-Safety Check
-  ↓
-Compile / Execute
-  ├── PASS → Final Result
-  └── FAIL → Error Feedback → LLM Auto-Fix → Validate Again
+       User
+        |
+        v
+  Streamlit Frontend
+        |
+        v
+   FastAPI Backend
+        |
+        v
+   Code Processing
+        |
+   +----+-----+
+   |          |
+   v          v
+Validation   Ollama
+   |          |
+   |       Local LLM
+   |          |
+   +----+-----+
+        |
+        v
+  Analysis / Refactoring
+        |
+        v
+   Display Results
 ```
 
-## Key capabilities
+## 📂 Project Structure
 
-1. **Iterative LLM Auto-Fix** — validates generated code and feeds compiler/runtime errors back to the LLM for up to 3 attempts.
-2. **Before/After Diff** — shows exactly what changed.
-3. **Quality Report** — compares code metrics before and after refactoring.
-4. **Static Analysis** — functions, classes, variables, loops, conditionals, imports, LOC, long lines and complexity indicators.
-5. **Safety Layer** — blocks selected high-risk execution patterns by default.
-6. **Refactoring History** — keeps the latest session results in the UI.
-7. **Structured LLM Output** — the refactoring prompt requests code, summary, changes and risks.
-8. **Backend Architecture** — Streamlit is the frontend and FastAPI exposes REST endpoints for analysis, validation and refactoring.
+```text
+Smart-AI-Code-Studio/
+│
+├── backend/
+│   └── main.py
+│
+├── docs/
+│
+├── app.py
+├── auth.py
+├── code_engine.py
+├── llm_service.py
+├── refactor_engine.py
+├── manage_users.py
+├── check_login.py
+│
+├── requirements.txt
+├── start_backend.bat
+├── start_frontend.bat
+├── README.md
+└── .gitignore
+```
 
-## Supported languages
+## ⚙️ Installation & Setup
 
-- Python
-- Java
-- C++
-- JavaScript
-
-## Technology stack
-
-- Python
-- Streamlit
-- FastAPI
-- Pydantic
-- Ollama
-- Llama 3
-- Requests
-- Static analysis with Python AST/regex
-- Git/GitHub
-
-## Run locally
-
-### 1. Install dependencies
+### 1. Clone the Repository
 
 ```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# macOS/Linux
-source venv/bin/activate
+git clone https://github.com/saniyakhadapkar-2005/Smart-AI-Code-Studio.git
+```
 
+### 2. Navigate to the Project
+
+```bash
+cd Smart-AI-Code-Studio
+```
+
+### 3. Create a Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+### 4. Activate Virtual Environment
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+### 5. Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Install and start Ollama
+### 6. Install and Start Ollama
 
-Make sure Ollama is running and the selected model is installed:
+Download Ollama:
+
+https://ollama.com/
+
+Pull the required AI models:
 
 ```bash
 ollama pull llama3
+ollama pull qwen2.5-coder:7b
 ```
 
-### 3. Start the FastAPI backend
+Make sure Ollama is running locally.
 
-From the project root:
+### 7. Start the Backend
 
 ```bash
 uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
 
-API documentation:
+### 8. Start the Frontend
 
-```text
-http://127.0.0.1:8001
-```
-
-### 4. Start the Streamlit frontend
-
-Open a second terminal:
+Open another terminal, activate the virtual environment, and run:
 
 ```bash
-streamlit run app.py
-```
-
-The UI normally opens at:
-
-```text
-http://localhost:8501
-```
-
-## API endpoints
-
-### `GET /api/health`
-
-Checks the backend and Ollama/model availability.
-
-### `POST /api/analyze`
-
-Runs static code analysis.
-
-Example request:
-
-```json
-{
-  "code": "def add(a,b): return a+b",
-  "language": "Python"
-}
-```
-
-### `POST /api/validate`
-
-Runs the safety layer and code validation/compilation.
-
-### `POST /api/refactor`
-
-Runs the complete GenAI pipeline:
-
-```text
-Analyze
-→ LLM Refactor
-→ Safety Check
-→ Validate
-→ Error Feedback
-→ Auto-Fix
-→ Validate Again
-→ Diff + Quality Report
-```
-
-## Important safety note
-
-The safety scanner is a **static blocking layer, not a secure sandbox**. Do not execute untrusted code on a machine containing sensitive data. The project is intended as a learning/prototype application.
-
-## Interview explanation
-
-> Smart AI Code Studio is a local LLM-based automated code refactoring system. Streamlit provides the frontend, while FastAPI exposes REST APIs for the backend. The backend performs static analysis and sends a structured refactoring request to a locally hosted Llama 3 model through Ollama. Generated code is passed through a safety check and validation stage. If compilation or execution fails, the error is captured and fed back to the LLM, which attempts to correct the code for a limited number of iterations. After successful validation, the system returns the final code along with a before/after diff, quality metrics, safety information and validation history.
-
-## Validation and Login
-
-The backend also contains a separate legacy validation/refactor pipeline. Do not confuse it with **Run Code**: the Run Code button calls the report-only `/api/diagnose` endpoint and does not execute or modify source. The separate validation/refactor workflow may compile or run generated code as part of its own validation cycle.
-
-1. Python/Java/C++/JavaScript syntax and compiler checks where the local compiler/parser is installed.
-2. Optional Pyflakes checks for Python semantic/lint issues, plus a local Qwen2.5-Coder review for undefined names, obvious type/API misuse, and logic concerns.
-3. Duplicate issue normalization and explicit report-only guarantees for the Run Code endpoint.
-
-AI review cannot prove arbitrary business logic without tests or a precise specification, so the system reports obvious logic concerns rather than claiming perfect correctness.
-
-### Multi-user login
-
-The Streamlit app now has a local login page. Users are stored in `users.json` using salted PBKDF2 password hashes.
-
-Demo accounts included for local testing:
-
-- `saniya` / `saniya123`
-- `admin` / `admin123`
-
-For another local user, run:
-
-```powershell
-python manage_users.py
-```
-
-For a public/production deployment, replace this demo authentication with a proper identity provider or database-backed authentication and change the demo passwords.
-
-## Run Code diagnostics (improved)
-
-The **Run Code** action is report-only: it never executes or edits submitted source. It uses Python AST parsing, optional Pyflakes semantic/lint checks, Java `javac` when installed, C++ `g++ -fsyntax-only` when installed, and JavaScript `node --check` when installed. It adds conservative, explicit heuristics for common missing-token, indentation, typo, and logic patterns and uses the configured local Ollama model as a second-opinion reviewer when available. Duplicate/near-duplicate issues are normalized and collapsed. Compiler checks are skipped with a partial-check note if the relevant compiler/runtime is not installed.
-
-Logic analysis is necessarily best-effort. For stronger verification, enter the expected behavior/output in the optional field and provide representative test cases. No tool can guarantee detection of every bug from source alone. This feature intentionally does not execute user code during Run Code.
-
-### Start on Windows
-
-Open PowerShell in the folder that contains both `app.py` and the `backend` folder.
-
-Terminal 1:
-```powershell
-python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
-```
-
-Terminal 2, in the same folder:
-```powershell
 python -m streamlit run app.py
 ```
 
-Open `http://localhost:8501`. Install Python dependencies with `python -m pip install -r requirements.txt`. Ollama and the selected model (`qwen2.5-coder:7b` by default) are optional for static checks, but needed for AI logic review and refactoring.
+## 🔄 Application Workflow
 
-### Tests
+1. User opens the Smart AI Code Studio application.
+2. User selects a programming language and provides code.
+3. The backend receives the request through FastAPI.
+4. The code engine processes the submitted code.
+5. Validation identifies possible coding issues.
+6. Ollama-powered AI models assist with code analysis and refactoring.
+7. Results are displayed through the Streamlit interface.
 
-Run `python -m pytest -q`. The included tests cover core utilities, common syntax/indentation errors, logic checks, duplicate suppression at the API layer, report-only behavior, and the `expected_behavior` refactoring regression.
+## 🎯 Project Objectives
+
+- Simplify code validation and analysis.
+- Reduce manual effort in identifying coding issues.
+- Improve code readability and maintainability.
+- Explore practical applications of Generative AI and LLMs.
+- Build a local-first AI-powered development assistant.
+
+## 🔮 Future Enhancements
+
+- Support for additional programming languages.
+- Advanced logical error detection.
+- Improved AI-powered debugging.
+- Automated unit test generation.
+- Enhanced code optimization.
+- Cloud deployment and remote accessibility.
+
+## 👩‍💻 Developer
+
+**Saniya Khadapkar**
+
+MSc Artificial Intelligence Student
+
+GitHub: https://github.com/saniyakhadapkar-2005
+
+---
+
+⭐ If you find this project interesting, feel free to explore the repository!
+
+**Built with Python, FastAPI, Streamlit and Generative AI.**
